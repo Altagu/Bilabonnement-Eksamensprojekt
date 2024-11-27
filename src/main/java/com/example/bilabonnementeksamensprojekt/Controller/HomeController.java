@@ -10,5 +10,3 @@ public class HomeController {
         return "home/index";
     }
 }
-
-//allo mah
