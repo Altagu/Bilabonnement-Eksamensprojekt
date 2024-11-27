@@ -2,10 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Landing</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="Header.css">
 </head>
 <body>
-<h1>Yo</h1>
+<div class="header-wrapper">
+    <div class="header" style="background-color: lightskyblue">
+        <div class="homebutton">
+            <a href="/">
+                <img src="images/logo.webp" alt="Logo" class="logo" style="border: 2px solid #5c6e56;">
+            </a>
+        </div>
+        <div class="dropdowntest">
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="/info">Om madspild</a>
+                    <a href="/forbruger">Begræns madspild i hjemmet</a>
+                    <a href="/organisation">Organisation</a>
+                    <a href="/virksomhed">Virksomhed</a>
+                    <a href="#footer-wrap">Bliv aktiv</a>
+                </div>
+            </div>
+        </div>
+        <form class="search-form" action="/searchErrorPage" method="GET">
+            <input type="text" name="query" placeholder="Søg..." class="search-input">
+            <button type="submit" class="search-button">🔍</button>
+        </form>
+    </div>
+</div>
+<div class="banner">
+    <img src="images/modeloversigt_banner.png" alt="Banner image">
+</div>
+<h1>Abonnement på bil</h1>
+<p>Herunder ser du en oversigt over vores tilgængelige biler:</p>
+<div class="content">
+<div class="card-container">
+    <a class="card">
+        <div class="card-image">
+        <img src="images/Fiat_500_Cult_268.png" alt="Fiat 500" class="button-icon">
+        </div>
+        <div class="card-content">
+            <h3>Fiat 500 Cabriolet Dolcevita</h3>
+            <p>Abonnement fra 3000 kr./md</p>
+            <p>Ink. forsikring, grøn ejerafgift, service</p>
+            <p>Samlet betaling over 12 mdr: 36.000 kr.</p>
+        </div>
+    </a>
+
+    <a class="card">
+        <div class="card-image">
+        <img src="images/Jeep_Avenger_Summit_BLACK.png" alt="Jeep Avenger" class="button-icon">
+        </div>
+        <div class="card-content">
+            <h3>Jeep Avenger Summit</h3>
+            <p>Abonnement fra 4000 kr./md</p>
+            <p>Ink. forsikring, grøn ejerafgift, service</p>
+            <p>Samlet betaling over 12 mdr: 48.000 kr.</p>
+        </div>
+    </a>
+
+    <a class="card">
+        <div class="card-image">
+        <img src="images/Peugeot_E-3008_GT_0MM00N9V.png" alt="Peugeot e3008" class="button-icon">
+        </div>
+        <div class="card-content">
+            <h3>Peugeot E-3008 GT</h3>
+            <p>Abonnement fra 4000 kr./md</p>
+            <p>Ink. forsikring, grøn ejerafgift, service</p>
+            <p>Samlet betaling over 12 mdr: 48.000 kr.</p>
+        </div>
+    </a>
+
+    <a class="card">
+        <div class="card-image">
+            <img src="images/Cocaine.jpg" alt="Cocaine" class="button-icon">
+        </div>
+        <div class="card-content">
+            <h3>Coke abonnement</h3>
+            <p>Abonnement fra 800 kr./md</p>
+            <p>Ink. dårlig lever, gode aftener, narkodiller</p>
+            <p>Samlet betaling over 12 mdr: 9600 kr.</p>
+        </div>
+    </a>
+</div>
+</div>
 
 </body>
 </html>

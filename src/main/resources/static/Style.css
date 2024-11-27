@@ -1,0 +1,203 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/*General settings*/
+body {
+    font-family: Arial, sans-serif;
+    display: block;
+    color: darkslategray;
+    margin: 0px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner img{
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content{
+    flex: 3;
+    padding-right: 20px;
+
+}
+
+.main-content h1{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.main-content ul{
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.main-content li{
+    margin-bottom: 10px;
+}
+
+/*Button settings*/
+.button-container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: black;
+    color: black;
+    text-decoration: black;
+    padding: 4px 4px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 300px;
+    box-shadow: 0 4px 8px #4f634b;
+    transition: transform 0.3s ease;
+}
+
+.button:hover{
+    transform: translateY(-5px);
+    color: #a5b1ba;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.button img.button-icon {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    border-style: solid;
+}
+
+
+/*Error page settings*/
+.error {
+    min-height: 50vh;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.error h1 {
+    max-width: 600px;
+}
+
+.error p {
+    max-width: 600px;
+    margin-top: 10px;
+}
+
+.errorBtn{
+    background-color: #222222;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.errorBtn:hover{
+    background-color: #424242;
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+/* Herunder findes test af card */
+
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    justify-content: center;
+
+}
+
+
+.card{
+    display: block;
+    width: 300px;
+    height: 400px;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px darkslategray;
+    overflow: hidden;
+    border: 1px solid black;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    color: #a5b1ba;
+    cursor: pointer;
+    /*text-decoration: underline;*/
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: whitesmoke;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-content {
+    padding: 15px
+}
+
+.card-content h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #666;
+}
+
+.card-image{
+    background: whitesmoke;
+    text-align: center;
+    padding: 20px;
+}
+
+.card-image img{
+    width: 100%;
+    max-width: 260px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+}
