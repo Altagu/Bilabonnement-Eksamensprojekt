@@ -10,5 +10,4 @@ public class HomeController {
         return "home/index";
     }
 }
-
-//qawdasda
+//allo mah
