@@ -10,4 +10,5 @@ public class BilabonnementEksamensprojektApplication {
         SpringApplication.run(BilabonnementEksamensprojektApplication.class, args);
     }
 
+
 }
