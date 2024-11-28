@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Skade</title>
     <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="Header.css">
-    <title>Skade</title>
 </head>
 <body>
 <div class="header-wrapper">
@@ -18,7 +18,7 @@
             <div class="dropdown">
                 <button class="dropbtn">Menu</button>
                 <div class="dropdown-content">
-                    <a href="/info">Om madspild</a>
+                    <a href="/skade">Skade</a>
                     <a href="/forbruger">Begræns madspild i hjemmet</a>
                     <a href="/organisation">Organisation</a>
                     <a href="/virksomhed">Virksomhed</a>
@@ -35,6 +35,24 @@
 <div class="banner">
     <img src="images/reparation.jpg" alt="Banner image">
 </div>
+<h1>Skadesrapportering</h1>
+<p>Indtast informationer til skadesrapport i formularen nedenfor</p>
+<div class="content">
+    <div class="damage-card">
+        <h2>Skaderegistrering</h2>
+        <form id="damageform" action="submit-damage-report" method="post">
+            <div class="form-group">
+                <label for="carID">Vælg bil:</label>
+                <select id="damageType" name="damageType" required>
+                    <option value="" disabled selected>Vælg en skadetype</option>
+                    <option value="1">Lakskade - 1500kr</option>
+                    <option value="2">Skadet sidespejl - 3000kr</option>
+                    <option value="3">Ridset alufælg - 800kr</option>
+                </select>
 
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

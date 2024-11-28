@@ -9,5 +9,9 @@ public class HomeController {
     public String index() {
         return "home/index";
     }
+
+    @GetMapping("/skade")
+    public String skade() {
+        return "home/skade";
+    }
 }
-//allo mah
