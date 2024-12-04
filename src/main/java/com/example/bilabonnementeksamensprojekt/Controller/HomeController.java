@@ -1,19 +1,15 @@
 package com.example.bilabonnementeksamensprojekt.Controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
-
     @GetMapping("/")
     public String index() {
-        return "home/index";  // Home page
+        return "home/index";
     }
 
-    @GetMapping("/lejeaftale")
-    public String lejeaftale() {
-        return "home/lejeaftale";
-    }
 }

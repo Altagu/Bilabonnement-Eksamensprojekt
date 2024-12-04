@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skade</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="Header.css">
+</head>
+<body>
+<div class="header-wrapper">
+    <div class="header" style="background-color: lightskyblue">
+        <div class="homebutton">
+            <a href="/">
+                <img src="images/logo.webp" alt="Logo" class="logo" style="border: 2px solid #5c6e56;">
+            </a>
+        </div>
+        <div class="dropdowntest">
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="/skade">Skade</a>
+                    <a href="/forbruger">Begræns madspild i hjemmet</a>
+                    <a href="/organisation">Organisation</a>
+                    <a href="/virksomhed">Virksomhed</a>
+                    <a href="#footer-wrap">Bliv aktiv</a>
+                </div>
+            </div>
+        </div>
+        <form class="search-form" action="/searchErrorPage" method="GET">
+            <input type="text" name="query" placeholder="Søg..." class="search-input">
+            <button type="submit" class="search-button">🔍</button>
+        </form>
+    </div>
+</div>
+<div class="banner">
+    <img src="images/reparation.jpg" alt="Banner image">
+</div>
+<h1>Skadesrapportering</h1>
+<p>Indtast informationer til skadesrapport i formularen nedenfor</p>
+<div class="content">
+    <h1>Skaderegistrering</h1>
+    <form action="/submit-damage-report" method="post">
+        <!-- Dropdown for selecting a car -->
+        <label for="carID">Vælg bil:</label>
+        <select id="carID" name="carID" required>
+            <option value="" disabled selected>Vælg en bil</option>
+            <th:block th:each="car : ${cars}">
+                <option th:value="${car.id}"
+                        th:text="${car.id} + ' - ' + ${car.brand} + ' ' + ${car.model}"></option>
+            </th:block>
+        </select>
+
+        <!-- Dropdown for selecting damage types -->
+        <label for="damageTypes">Vælg skadetyper:</label>
+        <div id="customDropdown" class="custom-dropdown">
+            <div th:each="damageType : ${damageTypes}">
+                <input type="checkbox"
+                       name="damageTypeIds"
+                th:value="${damageType.damageTypeID}"
+                th:id="'damage-' + ${damageType.damageTypeID}"
+                class="damage-checkbox"
+                th:data-cost="${damageType.cost}">
+                <label th:for="'damage-' + ${damageType.damageTypeID}"
+                       th:text="${damageType.name} + ' - ' + ${damageType.cost} + ' kr'">
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <label>Total Pris:</label>
+            <span id="totalPrice">0 kr</span>
+        </div>
+        <button type="submit">Send rapport</button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('.damage-checkbox');
+            const totalPriceElement = document.getElementById('totalPrice');
+
+            function updateTotalPrice() {
+                let total = 0;
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        total += parseFloat(checkbox.getAttribute('data-cost'));
+                    }
+                });
+                totalPriceElement.textContent = total.toFixed(2) + ' kr';
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotalPrice);
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

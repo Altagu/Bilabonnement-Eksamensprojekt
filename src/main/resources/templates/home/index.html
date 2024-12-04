@@ -18,12 +18,12 @@
             <div class="dropdown">
                 <button class="dropbtn">Menu</button>
                 <div class="dropdown-content">
-                    <a href="/lejeaftale">Opret lejeaftale</a>
+                    <a href="/skade">Skade</a>
                     <a href="/forbruger">Begræns madspild i hjemmet</a>
                     <a href="/organisation">Organisation</a>
                     <a href="/virksomhed">Virksomhed</a>
 
-
+                    <!-- Show Admin Dashboard link only for admins -->
                     <div th:if="${user != null and user.role == 'ADMIN'}">
                         <a href="home/adminDashboard">Admin Dashboard</a>
                     </div>

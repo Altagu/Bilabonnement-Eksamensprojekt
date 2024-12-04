@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Damage Report Summary</title>
+  <style>
+    /* Add styles for enhanced readability */
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .summary { border: 1px solid #ccc; padding: 20px; border-radius: 8px; background-color: #f9f9f9; }
+  </style>
+</head>
+<body>
+<div class="summary">
+  <h2>Damage Report Summary</h2>
+
+  <h3>Car Details:</h3>
+  <p>ID: <span th:text="${car.id}">Car ID</span></p>
+  <p>VIN: <span th:text="${car.vin}">Car VIN</span></p>
+  <p>Brand: <span th:text="${car.brand}">Car Brand</span></p>
+  <p>Model: <span th:text="${car.model}">Car Model</span></p>
+
+  <h3>Selected Damages:</h3>
+  <ul>
+    <li th:each="detail : ${selectedDamageTypes}">
+      <span th:text="${detail.name}">Damage Name</span> -
+      <span th:text="${detail.lineCost}">Damage Cost</span> kr
+    </li>
+  </ul>
+
+  <h3>Total Price:</h3>
+  <p><span th:text="${totalPrice}">Total Price</span> kr</p>
+
+  <button onclick="window.history.back()">Back to Form</button>
+</div>
+</body>
+</html>

@@ -201,3 +201,67 @@ body {
     object-fit: cover;
     border-radius: 8px;
 }
+
+.damage-card{
+    display: block;
+    width: 1000px;
+    height: auto;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px darkslategray;
+    overflow: hidden;
+    border: 1px solid black;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input, select, button{
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid black;
+    border-radius: 8px;
+
+}
+
+button{
+    background-color: darkslategray;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: black;
+}
+
+.custom-dropdown {
+    border: 1px solid #ccc;
+    margin: 8px 0;
+    padding: 10px;
+    max-height: 150px; /* Adjust based on preference */
+    overflow-y: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.damage-checkbox {
+    margin-right: 8px;
+}
+
+.custom-dropdown label {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+}
