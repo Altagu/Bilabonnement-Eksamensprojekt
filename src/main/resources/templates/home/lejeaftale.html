@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lejeaftale</title>
+</head>
+<body>
+  <h1>Lejeaftale Formular</h1>
+  <form action="/submitRentalAgreement" method="POST">
+    <!-- Kundeoplysninger -->
+    <div>
+      <label for="customerName">Kunde Navn:</label>
+      <input type="text" id="customerName" name="customerName" required>
+    </div>
+    <div>
+      <label for="contactInfo">Kontakt Information:</label>
+      <input type="text" id="contactInfo" name="contactInfo" required>
+    </div>
+
+    <!-- Bilvalg -->
+    <div>
+      <label for="carSelection">Vælg Bil (Stelnummer og Lagerstatus):</label>
+      <select id="carSelection" name="carSelection" required>
+        <option value="">-- Vælg en bil --</option>
+        <option value="12345-available">12345 - Tilgængelig</option>
+        <option value="67890-notAvailable">67890 - Ikke tilgængelig</option>
+        <option value="54321-available">54321 - Tilgængelig</option>
+      </select>
+    </div>
+
+    <!-- Lejeoplysninger -->
+    <div>
+      <label for="rentalPeriod">Lejeperiode (fra og til):</label>
+      <input type="text" id="rentalPeriod" name="rentalPeriod" placeholder="fx 01-12-2024 til 15-12-2024" required>
+    </div>
+    <div>
+      <label for="price">Pris (DKK):</label>
+      <input type="number" id="price" name="price" step="0.01" min="0" required>
+    </div>
+    <div>
+      <label for="pickupLocation">Afhentningssted:</label>
+      <input type="text" id="pickupLocation" name="pickupLocation" required>
+    </div>
+
+    <!-- Kommentarer -->
+    <div>
+      <label for="comments">Yderligere Kommentarer:</label>
+      <textarea id="comments" name="comments" rows="4"></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div>
+      <button type="submit">Send Lejeaftale</button>
+    </div>
+  </form>
+</body>
+</html>

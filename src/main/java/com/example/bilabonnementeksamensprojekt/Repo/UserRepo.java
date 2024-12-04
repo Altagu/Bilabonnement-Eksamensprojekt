@@ -38,7 +38,7 @@ public class UserRepo {
     // Method to check login credentials
     public User checkLogin(String username, String password) {
         User user = findUser(username);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getUsername().equals(username) && user.getPassword().equals(password)) {
             return user;
         } else {
             return null;

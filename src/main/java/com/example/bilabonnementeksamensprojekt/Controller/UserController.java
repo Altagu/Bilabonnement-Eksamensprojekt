@@ -30,10 +30,12 @@ public class UserController {
     public String loginPost(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
         try {
             User user = userService.checkLogin(username, password);
+
             if (user == null) {
-                model.addAttribute("error", "invalid");
-                return "index";
+                model.addAttribute("error", "User does not exist or password is incorrect.");
+                return "home/login";
             }
+
             int userId = user.getUserID();
 
             // Log the role to verify it's correct
