@@ -38,21 +38,60 @@
 <h1>Skadesrapportering</h1>
 <p>Indtast informationer til skadesrapport i formularen nedenfor</p>
 <div class="content">
-    <div class="damage-card">
-        <h2>Skaderegistrering</h2>
-        <form id="damageform" action="submit-damage-report" method="post">
-            <div class="form-group">
-                <label for="carID">Vælg bil:</label>
-                <select id="damageType" name="damageType" required>
-                    <option value="" disabled selected>Vælg en skadetype</option>
-                    <option value="1">Lakskade - 1500kr</option>
-                    <option value="2">Skadet sidespejl - 3000kr</option>
-                    <option value="3">Ridset alufælg - 800kr</option>
-                </select>
+    <h1>Skaderegistrering</h1>
+    <form action="/submit-damage-report" method="post">
+        <!-- Dropdown for selecting a car -->
+        <label for="carID">Vælg bil:</label>
+        <select id="carID" name="carID" required>
+            <option value="" disabled selected>Vælg en bil</option>
+            <th:block th:each="car : ${cars}">
+                <option th:value="${car.id}"
+                        th:text="${car.id} + ' - ' + ${car.brand} + ' ' + ${car.model}"></option>
+            </th:block>
+        </select>
 
+        <!-- Dropdown for selecting damage types -->
+        <label for="damageTypes">Vælg skadetyper:</label>
+        <div id="customDropdown" class="custom-dropdown">
+            <div th:each="damageType : ${damageTypes}">
+                <input type="checkbox"
+                       name="damageTypeIds"
+                th:value="${damageType.damageTypeID}"
+                th:id="'damage-' + ${damageType.damageTypeID}"
+                class="damage-checkbox"
+                th:data-cost="${damageType.cost}">
+                <label th:for="'damage-' + ${damageType.damageTypeID}"
+                       th:text="${damageType.name} + ' - ' + ${damageType.cost} + ' kr'">
+                </label>
             </div>
-        </form>
-    </div>
+        </div>
+
+        <div>
+            <label>Total Pris:</label>
+            <span id="totalPrice">0 kr</span>
+        </div>
+        <button type="submit">Send rapport</button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('.damage-checkbox');
+            const totalPriceElement = document.getElementById('totalPrice');
+
+            function updateTotalPrice() {
+                let total = 0;
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        total += parseFloat(checkbox.getAttribute('data-cost'));
+                    }
+                });
+                totalPriceElement.textContent = total.toFixed(2) + ' kr';
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotalPrice);
+            });
+        });
+    </script>
 </div>
 </body>
 </html>

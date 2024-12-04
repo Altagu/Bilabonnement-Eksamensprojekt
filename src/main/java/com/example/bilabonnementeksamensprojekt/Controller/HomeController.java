@@ -12,16 +12,4 @@ public class HomeController {
         return "home/index";
     }
 
-    @GetMapping("/skade")
-    public String skade() {
-        return "home/skade";
-    }
-
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false) String error, Model model) {
-        if (error != null) {
-            model.addAttribute("error", "Invalid username or password");
-        }
-        return "home/login";
-    }
 }
