@@ -82,6 +82,7 @@ public class UserController {
         }
     }
 
+    /*
     @GetMapping("/projectManager")
     public String projectManager(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
@@ -126,7 +127,7 @@ public class UserController {
         } else {
             return "redirect:/";
         }
-    }
+    }*/
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

@@ -7,17 +7,19 @@ public class Car {
     private String model;  // Changed to lowercase
     private String fuelType;  // Changed to camelCase
     private double pricePrMonth;  // Changed to camelCase
+    private String status;
 
     public Car() {
     }
 
-    public Car(int id, String vin, String brand, String model, String fuelType, double pricePrMonth) {
+    public Car(int id, String vin, String brand, String model, String fuelType, double pricePrMonth, String status) {
         this.id = id;
         this.vin = vin;
         this.brand = brand;
         this.model = model;
         this.fuelType = fuelType;
         this.pricePrMonth = pricePrMonth;
+        this.status = status;
     }
 
     public int getId() {
@@ -44,6 +46,10 @@ public class Car {
         return pricePrMonth;  // Adjusted
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -66,5 +72,9 @@ public class Car {
 
     public void setPricePrMonth(double pricePrMonth) {
         this.pricePrMonth = pricePrMonth;  // Adjusted
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

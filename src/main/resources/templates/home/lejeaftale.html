@@ -19,12 +19,13 @@
 
     <!-- Bilvalg -->
     <div>
-      <label for="carSelection">Vælg Bil (Stelnummer og Lagerstatus):</label>
-      <select id="carSelection" name="carSelection" required>
-        <option value="">-- Vælg en bil --</option>
-        <option value="12345-available">12345 - Tilgængelig</option>
-        <option value="67890-notAvailable">67890 - Ikke tilgængelig</option>
-        <option value="54321-available">54321 - Tilgængelig</option>
+      <label for="carID">Vælg bil:</label>
+      <select id="carID" name="carID" required>
+        <option value="" disabled selected>Vælg en bil</option>
+        <th:block th:each="car : ${cars}">
+          <option th:value="${car.id}"
+                  th:text="${car.id} + ': ' + ${car.brand} + ', ' + ${car.model} + ', ' + ${car.status}"></option>
+        </th:block>
       </select>
     </div>
 
