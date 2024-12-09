@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Rental Contract</title>
+</head>
+<body>
+<h1>Create Rental Contract</h1>
+<form th:action="@{/rentalContracts/submitRentalContract}" method="POST">
+    <!-- Customer Details -->
+    <div>
+        <label for="customerID">Customer ID:</label>
+        <select id="customerID" name="customerID" required>
+            <option value="" disabled selected>Select a Customer</option>
+            <th:block th:each="customer : ${customers}">
+                <option th:value="${customer.customerID}"
+                        th:text="${customer.fname} + ' ' + ${customer.lname}"></option>
+            </th:block>
+        </select>
+    </div>
+
+    <!-- Car Selection -->
+    <div>
+        <label for="carID">Select Car:</label>
+        <select id="carID" name="carID" required>
+            <option value="" disabled selected>Select a Car</option>
+            <th:block th:each="car : ${cars}">
+                <option th:value="${car.id}" th:text="${car.id} + ': ' + ${car.brand} + ' ' + ${car.model}"></option>
+            </th:block>
+        </select>
+    </div>
+
+    <!-- Rental Information -->
+    <div>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required>
+    </div>
+    <div>
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required>
+    </div>
+    <div>
+        <label for="rentalFee">Fee (DKK):</label>
+        <input type="number" id="rentalFee" name="rentalFee" step="0.01" min="0" required>
+    </div>
+
+    <!-- Submit -->
+    <div>
+        <button type="submit">Submit Rental Contract</button>
+    </div>
+</form>
+</body>
+</html>

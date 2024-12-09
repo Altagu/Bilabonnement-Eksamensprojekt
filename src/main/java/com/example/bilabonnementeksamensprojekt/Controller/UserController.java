@@ -21,6 +21,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ModelAttribute
+    public void addUserToModel(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+    }
+
     @GetMapping("/login")
     public String login() {
         return "home/login";

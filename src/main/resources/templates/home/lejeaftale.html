@@ -1,58 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Lejeaftale</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lejeaftale</title>
 </head>
 <body>
-  <h1>Lejeaftale Formular</h1>
-  <form action="/submitRentalAgreement" method="POST">
-    <!-- Kundeoplysninger -->
-    <div>
-      <label for="customerName">Kunde Navn:</label>
-      <input type="text" id="customerName" name="customerName" required>
-    </div>
-    <div>
-      <label for="contactInfo">Kontakt Information:</label>
-      <input type="text" id="contactInfo" name="contactInfo" required>
-    </div>
+<h1>Opret Lejeaftale</h1>
+<form action="/rentalContracts/create" method="POST">
+  <!-- Kundeoplysninger -->
+  <div>
+    <label for="customerID">Kunde:</label>
+    <select id="customerID" name="customerID" required>
+      <option value="" disabled selected>Vælg en kunde</option>
+      <th:block th:each="customer : ${customers}">
+        <option th:value="${customer.customerID}"
+                th:text="${customer.fname} + ' ' + ${customer.lname} + ' (' + ${customer.email} + ')'">
+        </option>
+      </th:block>
+    </select>
+  </div>
 
-    <!-- Bilvalg -->
-    <div>
-      <label for="carID">Vælg bil:</label>
-      <select id="carID" name="carID" required>
-        <option value="" disabled selected>Vælg en bil</option>
-        <th:block th:each="car : ${cars}">
-          <option th:value="${car.id}"
-                  th:text="${car.id} + ': ' + ${car.brand} + ', ' + ${car.model} + ', ' + ${car.status}"></option>
-        </th:block>
-      </select>
-    </div>
+  <!-- Bilvalg -->
+  <div>
+    <label for="carID">Vælg bil:</label>
+    <select id="carID" name="carID" required>
+      <option value="" disabled selected>Vælg en bil</option>
+      <th:block th:each="car : ${cars}">
+        <option th:value="${car.carID}"
+                th:text="${car.brand} + ' ' + ${car.model} + ' (' + ${car.status} + ')'"></option>
+      </th:block>
+    </select>
+  </div>
 
-    <!-- Lejeoplysninger -->
-    <div>
-      <label for="rentalPeriod">Lejeperiode (fra og til):</label>
-      <input type="text" id="rentalPeriod" name="rentalPeriod" placeholder="fx 01-12-2024 til 15-12-2024" required>
-    </div>
-    <div>
-      <label for="price">Pris (DKK):</label>
-      <input type="number" id="price" name="price" step="0.01" min="0" required>
-    </div>
-    <div>
-      <label for="pickupLocation">Afhentningssted:</label>
-      <input type="text" id="pickupLocation" name="pickupLocation" required>
-    </div>
+  <!-- Lejeoplysninger -->
+  <div>
+    <label for="startDate">Startdato:</label>
+    <input type="date" id="startDate" name="startDate" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
+  </div>
+  <div>
+    <label for="endDate">Slutdato:</label>
+    <input type="date" id="endDate" name="endDate">
+  </div>
+  <div>
+    <label for="rentalFee">Lejepris (DKK):</label>
+    <input type="number" id="rentalFee" name="rentalFee" step="0.01" min="0" required>
+  </div>
 
-    <!-- Kommentarer -->
-    <div>
-      <label for="comments">Yderligere Kommentarer:</label>
-      <textarea id="comments" name="comments" rows="4"></textarea>
-    </div>
-
-    <!-- Submit -->
-    <div>
-      <button type="submit">Send Lejeaftale</button>
-    </div>
-  </form>
+  <!-- Submit -->
+  <div>
+    <button type="submit">Opret Lejeaftale</button>
+  </div>
+</form>
 </body>
 </html>

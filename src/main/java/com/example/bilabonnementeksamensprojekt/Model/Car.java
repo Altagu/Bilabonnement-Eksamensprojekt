@@ -1,6 +1,11 @@
 package com.example.bilabonnementeksamensprojekt.Model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Car {
+    @Id
     private int id;
     private String vin;  // Changed to lowercase
     private String brand;  // Changed to lowercase
@@ -50,8 +55,8 @@ public class Car {
         return status;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int carID) {
+        this.id = carID;
     }
 
     public void setVin(String vin) {
