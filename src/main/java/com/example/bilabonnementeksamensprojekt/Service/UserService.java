@@ -20,8 +20,13 @@ public class UserService {
     }
 
     public void createUser(User user) throws SQLException {
+        if (user.getRole() == null || user.getRole().isEmpty()) {
+            user.setRole("USER");
+        }
+
         userRepo.createUser(user);
     }
+
 
     public List<User> showAllUsers() throws SQLException {
         return userRepo.showAllUsers();

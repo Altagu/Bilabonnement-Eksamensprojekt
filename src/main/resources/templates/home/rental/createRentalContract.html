@@ -15,7 +15,7 @@
             <option value="" disabled selected>Select a Customer</option>
             <th:block th:each="customer : ${customers}">
                 <option th:value="${customer.customerID}"
-                        th:text="${customer.fname} + ' ' + ${customer.lname}"></option>
+                        th:text="${customer.customerID} + ': ' + ${customer.fname} + ' ' + ${customer.lname}"></option>
             </th:block>
         </select>
     </div>

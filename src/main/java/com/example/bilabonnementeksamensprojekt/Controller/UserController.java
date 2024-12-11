@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -29,7 +28,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String login() {
-        return "home/login";
+        return "home/user/login";
     }
 
     @PostMapping("/login")
@@ -39,7 +38,7 @@ public class UserController {
 
             if (user == null) {
                 model.addAttribute("error", "User does not exist or password is incorrect.");
-                return "home/login";
+                return "home/user/login";
             }
 
             int userId = user.getUserID();
@@ -52,13 +51,13 @@ public class UserController {
                 return "redirect:/";
             } else if (user.getRole().equals("EMPLOYEE")) {
                 session.setAttribute("user", user);
-                return "redirect:/employee/" + userId;
+                return "redirect:/";
             } else if (user.getRole().equals("USER")) {
                 session.setAttribute("user", user);
                 return "redirect:/";
             } else {
                 model.addAttribute("error", "invalid");
-                return "index";
+                return "/";
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,6 +66,38 @@ public class UserController {
         }
     }
 
+    @GetMapping("/createLogin")
+    public String createLogin(Model model) {
+        model.addAttribute("user", new User());
+        return "home/user/createLogin";
+    }
+
+    @PostMapping("/createLogin")
+    public String postCreateLogin(
+            @RequestParam String username,
+            @RequestParam String password,
+            @RequestParam(required = false, defaultValue = "USER") String role
+    ) throws SQLException {
+        // Log inputs for debugging
+        System.out.println("Received username: " + username);
+        System.out.println("Received password: " + password);
+        System.out.println("Received role: " + role);
+
+        // Validate required fields
+        if (username.isEmpty() || password.isEmpty()) {
+            System.out.println("Missing username or password!");
+            return "redirect:/error"; // Redirect to an error page
+        }
+
+        // Create a new user object with defaults
+        User user = new User(username, password, role);
+
+        // Save user
+        userService.createUser(user);
+
+        // Redirect to the homepage
+        return "redirect:/";
+    }
 
     @GetMapping("/adminDashboard")
     public String admin(HttpSession session) {
@@ -81,59 +112,12 @@ public class UserController {
     @GetMapping("/employee")
     public String employee(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if (user != null && user.getRole().equals("employee")) {
-            return "employee";
+        if (user != null && user.getRole().equals("EMPLOYEE")) {
+            return "home/employee";
         } else {
             return "redirect:/";
         }
     }
-
-    /*
-    @GetMapping("/projectManager")
-    public String projectManager(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
-        if (user != null && user.getRole().equals("pjManager")) {
-            model.addAttribute("user", user);
-            return "projectManager";
-        } else {
-            return "redirect:/";
-        }
-    }
-
-    @GetMapping("/createUser")
-    public String createUser(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user != null && "admin".equals(user.getRole())) {
-            User defaultUser = new User();
-            model.addAttribute("user", defaultUser);
-            return "createUser";
-        } else {
-            return "redirect:/";
-        }
-    }
-
-    @PostMapping("/createUser")
-    public String postCreateUser(@ModelAttribute User user, HttpSession session) throws SQLException {
-        User currentUser = (User) session.getAttribute("user");
-        if (currentUser != null && "admin".equals(currentUser.getRole())) {
-            userService.createUser(user);
-            return "redirect:/admin";
-        } else {
-            return "redirect:/";
-        }
-    }
-
-    @GetMapping("/showUsers")
-    public String showUsers(Model model, HttpSession session) throws SQLException {
-        User user = (User) session.getAttribute("user");
-        if (user != null && "admin".equals(user.getRole())) {
-            List<User> userList = userService.showAllUsers();
-            model.addAttribute("userList", userList);
-            return "showUsers";
-        } else {
-            return "redirect:/";
-        }
-    }*/
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

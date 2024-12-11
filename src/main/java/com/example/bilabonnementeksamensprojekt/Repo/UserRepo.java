@@ -37,11 +37,11 @@ public class UserRepo {
 
     // Method to check login credentials
     public User checkLogin(String username, String password) {
-        User user = findUser(username);
-        if (user != null && user.getUsername().equals(username) && user.getPassword().equals(password)) {
-            return user;
-        } else {
-            return null;
+        String SQL = "SELECT * FROM users WHERE username = ? AND password = ?";
+        try {
+            return jdbcTemplate.queryForObject(SQL, new Object[]{username, password}, new BeanPropertyRowMapper<>(User.class));
+        } catch (Exception e) {
+            return null; // No user found or other error
         }
     }
 
