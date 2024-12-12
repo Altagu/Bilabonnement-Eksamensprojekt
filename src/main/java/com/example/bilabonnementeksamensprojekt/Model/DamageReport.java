@@ -10,7 +10,6 @@ public class DamageReport {
     private int damageReportID;
     private int carID;
     private Date reportDate;
-    private String status;
     private double totalCost;
 
     private List<DamageReportDetail> damageDetails; // To hold associated damage details
@@ -18,11 +17,10 @@ public class DamageReport {
     public DamageReport() {
     }
 
-    public DamageReport(int damageReportID, int carID, Date reportDate, String status, double totalCost) {
+    public DamageReport(int damageReportID, int carID, Date reportDate, double totalCost) {
         this.damageReportID = damageReportID;
         this.carID = carID;
         this.reportDate = reportDate;
-        this.status = status;
         this.totalCost = totalCost;
     }
 
@@ -49,14 +47,6 @@ public class DamageReport {
 
     public void setReportDate(Date reportDate) {
         this.reportDate = reportDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public double getTotalCost() {

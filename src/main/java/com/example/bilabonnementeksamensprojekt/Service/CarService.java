@@ -45,4 +45,19 @@ public class CarService {
      public void updateCar(Car c){
         carRepo.updateCar(c);
      }
+
+     public int carsRented(){
+        return carRepo.carsRented();
+     }
+
+     public double expectedIncome(){
+        return carRepo.expectedIncome();
+     }
+
+     public int awaitingRepair(){
+        return carRepo.awaitingRepair();
+     }
+    public List<Car> searchCars(String query) {
+        return carRepo.searchCars(query);
+    }
 }

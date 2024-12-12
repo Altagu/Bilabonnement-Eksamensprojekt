@@ -14,13 +14,7 @@ public class CarRepo {
     @Autowired
 
     JdbcTemplate template;
-    /*
-    public List<Car> fetchAll(){
-        String sql = "SELECT * FROM Cars";
-        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
-        return template.query(sql, rowMapper);
-    }*/
-    // Fetch all cars
+
     public List<Car> fetchAll(){
         // Ensure the column names match exactly with those in your table
         String sql = "SELECT CarID as id, VIN, Brand, Model, Fueltype, PricePrMonth FROM Cars";
@@ -52,5 +46,28 @@ public class CarRepo {
     public void updateCar(Car c){
         String sql = "UPDATE Cars SET VIN = ?, Brand = ?, Model = ?, Fueltype = ?, PricePrMonth = ? WHERE CarID = ?";
         template.update(sql, c.getVin(), c.getBrand(), c.getModel(), c.getFuelType(), c.getPricePrMonth(), c.getId());
+    }
+
+    public int carsRented(){
+        String sql = "SELECT COUNT(*) FROM Cars WHERE Status = 'Udlejet'";
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public double expectedIncome(){
+        String sql = "SELECT SUM(PricePrMonth) FROM Cars WHERE Status = 'Udlejet'";
+        return template.queryForObject(sql, Double.class);
+    }
+
+    public int awaitingRepair(){
+        String sql = "SELECT COUNT(*) FROM Cars WHERE Status = 'Skadet'";
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public List<Car> searchCars(String query) {
+        String sql = "SELECT CarID AS id, VIN, Brand, Model, Fueltype, PricePrMonth FROM Cars " +
+                "WHERE VIN LIKE ? OR Brand LIKE ? OR Model LIKE ?";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        String criteria = "%" + query + "%";  // To match any occurrence of the query
+        return template.query(sql, new Object[]{criteria, criteria, criteria}, rowMapper);
     }
 }

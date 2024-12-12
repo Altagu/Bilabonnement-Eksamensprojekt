@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+<h1>Car Details</h1>
+<form action="/updateCar" method="post">
+  <input type="hidden" name="id" th:value="${car.id}">
+  <label for="vin">Stelnummer(VIN):</label>
+  <input type="text" id="vin" name="vin" th:value="${car.vin}">
+  <br>
+  <label for="brand">Brand:</label>
+  <input type="text" id="brand" name="brand" th:value="${car.brand}">
+  <br>
+  <label for="model">Model:</label>
+  <input type="text" id="model" name="model" th:value="${car.model}">
+  <br>
+  <label for="fuelType">Fuel Type:</label>
+  <input type="text" id="fuelType" name="fuelType" th:value="${car.fuelType}">
+  <br>
+  <label for="pricePrMonth">Price per Month:</label>
+  <input type="text" id="pricePrMonth" name="pricePrMonth" th:value="${car.pricePrMonth}">
+  <br>
+  <button type="submit">Update</button>
+</form>
+</body>
+</html>

@@ -2,11 +2,17 @@ package com.example.bilabonnementeksamensprojekt.Model;
 
 public class Car {
     private int id;
-    private String vin;  // Changed to lowercase
-    private String brand;  // Changed to lowercase
-    private String model;  // Changed to lowercase
-    private String fuelType;  // Changed to camelCase
-    private double pricePrMonth;  // Changed to camelCase
+    private String vin;
+    private String brand;
+    private String model;
+    private String fuelType;
+    private double pricePrMonth;
+    private enum Status {
+        Udlejet,
+        Tilbageleveret,
+        Klar_til_udlejning,
+        Skadet
+    }
 
     public Car() {
     }
@@ -25,23 +31,23 @@ public class Car {
     }
 
     public String getVin() {
-        return vin;  // Adjusted
+        return vin;
     }
 
     public String getBrand() {
-        return brand;  // Adjusted
+        return brand;
     }
 
     public String getModel() {
-        return model;  // Adjusted
+        return model;
     }
 
     public String getFuelType() {
-        return fuelType;  // Adjusted
+        return fuelType;
     }
 
     public double getPricePrMonth() {
-        return pricePrMonth;  // Adjusted
+        return pricePrMonth;
     }
 
     public void setId(int id) {
@@ -53,18 +59,19 @@ public class Car {
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;  // Adjusted
+        this.brand = brand;
     }
 
     public void setModel(String model) {
-        this.model = model;  // Adjusted
+        this.model = model;
     }
 
     public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;  // Adjusted
+        this.fuelType = fuelType;
     }
 
     public void setPricePrMonth(double pricePrMonth) {
-        this.pricePrMonth = pricePrMonth;  // Adjusted
+        this.pricePrMonth = pricePrMonth;
     }
+
 }
