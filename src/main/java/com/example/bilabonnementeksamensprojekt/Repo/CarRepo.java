@@ -60,4 +60,27 @@ public class CarRepo {
         String sql = "UPDATE Cars SET Status = ? WHERE CarID = ?";
         template.update(sql, status, carID);
     }
+
+    public int carsRented(){
+        String sql = "SELECT COUNT(*) FROM Cars WHERE Status = 'Udlejet'";
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public double expectedIncome(){
+        String sql = "SELECT SUM(PricePrMonth) FROM Cars WHERE Status = 'Udlejet'";
+        return template.queryForObject(sql, Double.class);
+    }
+
+    public int awaitingRepair(){
+        String sql = "SELECT COUNT(*) FROM Cars WHERE Status = 'Skadet'";
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public List<Car> searchCars(String query) {
+        String sql = "SELECT CarID AS id, VIN, Brand, Model, Fueltype, PricePrMonth FROM Cars " +
+                "WHERE VIN LIKE ? OR Brand LIKE ? OR Model LIKE ?";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        String criteria = "%" + query + "%";  // To match any occurrence of the query
+        return template.query(sql, new Object[]{criteria, criteria, criteria}, rowMapper);
+    }
 }

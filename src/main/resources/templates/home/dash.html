@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="Header.css">
+</head>
+<body>
+<div class="header-wrapper">
+    <div class="header" style="background-color: lightskyblue">
+        <div class="homebutton">
+            <a href="/">
+                <img src="images/logo.webp" alt="Logo" class="logo" style="border: 2px solid #5c6e56;">
+            </a>
+        </div>
+        <div class="dropdowntest">
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="/skade">Skade</a>
+                    <a href="/dash">dash</a>
+                    <a href="/organisation">Organisation</a>
+                    <a href="/virksomhed">Virksomhed</a>
+
+                    <!-- Show Admin Dashboard link only for admins -->
+                    <div th:if="${user != null and user.role == 'ADMIN'}">
+                        <a href="home/adminDashboard">Admin Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form class="search-form" action="/searchErrorPage" method="GET">
+            <input type="text" name="query" placeholder="Søg..." class="search-input">
+            <button type="submit" class="search-button">🔍</button>
+        </form>
+
+        <div class="login">
+            <!-- Show login link if the user is not logged in -->
+            <div th:if="${user == null}">
+                <a href="/login">Log ind</a>
+            </div>
+
+            <!-- Show logged-in user's name and logout option if the user is logged in -->
+            <div th:if="${user != null}">
+                <p>Welcome, <span th:text="${user.username}"></span>!</p>
+                <p th:text="'User role: ' + ${user.role}"></p> <!-- Display User Role -->
+                <a href="/logout">Log ud</a>
+            </div>
+        </div>
+    </div>
+</div>
+<main>
+    <h1 style="font-size: 48px;font-weight: bold">Dashboard</h1>
+    <div class="content">
+        <div class="card-container">
+            <div class="card">
+                <div class="card-content">
+                    <h3>Biler udlejet:</h3>
+                        <span th:text="${carsRented}"></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <h3>Foreventet Månedlig indkomst:</h3>
+                        <span th:text="${expectedIncome}"></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <h3>Afventer Reparation</h3>
+                        <span th:text="${awaitingRepair}"></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Lageroversigt</h2>
+    <form class="search-form" action="/dash" method="GET">
+        <input type="text" name="query" placeholder="Search for cars..." class="search-input" th:value="${query}">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    <table>
+        <tr>
+            <th>
+                <a th:href="'/dash?sort=id&order=' + (${sort == 'id' and order == 'asc'} ? 'desc' : 'asc')">
+                    ID
+                    <span th:if="${sort == 'id' and order == 'asc'}">▲</span>
+                    <span th:if="${sort == 'id' and order == 'desc'}">▼</span>
+                </a>
+            </th>
+            <th>
+                <a th:href="'/dash?sort=vin&order=' + (${sort == 'vin' and order == 'asc'} ? 'desc' : 'asc')">
+                    Stelnummer (VIN)
+                    <span th:if="${sort == 'vin' and order == 'asc'}">▲</span>
+                    <span th:if="${sort == 'vin' and order == 'desc'}">▼</span>
+                </a>
+            </th>
+            <th>
+                <a th:href="'/dash?sort=brand&order=' + (${sort == 'brand' and order == 'asc'} ? 'desc' : 'asc')">
+                    Mærke
+                    <span th:if="${sort == 'brand' and order == 'asc'}">▲</span>
+                    <span th:if="${sort == 'brand' and order == 'desc'}">▼</span>
+                </a>
+            </th>
+            <th>
+                <a th:href="'/dash?sort=model&order=' + (${sort == 'model' and order == 'asc'} ? 'desc' : 'asc')">
+                    Model
+                    <span th:if="${sort == 'model' and order == 'asc'}">▲</span>
+                    <span th:if="${sort == 'model' and order == 'desc'}">▼</span>
+                </a>
+            </th>
+            <th>
+                <a th:href="'/dash?sort=fuelType&order=' + (${sort == 'fuelType' and order == 'asc'} ? 'desc' : 'asc')">
+                    Brændstof
+                    <span th:if="${sort == 'fuelType' and order == 'asc'}">▲</span>
+                    <span th:if="${sort == 'fuelType' and order == 'desc'}">▼</span>
+                </a>
+            </th>
+            <th>
+                <a th:href="'/dash?sort=pricePrMonth&order=' + (${sort == 'pricePrMonth' and order == 'asc'} ? 'desc' : 'asc')">
+                    Pris pr måned
+                    <span th:if="${sort == 'pricePrMonth' and order == 'asc'}">▲</span>
+                    <span th:if="${sort == 'pricePrMonth' and order == 'desc'}">▼</span>
+                </a>
+            </th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="car: ${cars}">
+            <td th:text="${car.id}"></td>
+            <td th:text="${car.vin}"></td>
+            <td th:text="${car.brand}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.fuelType}"></td>
+            <td th:text="${car.pricePrMonth}"></td>
+            <td>
+                <a th:href="@{'/details/' + ${car.id}}" class="button">Details</a>
+            </td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>
