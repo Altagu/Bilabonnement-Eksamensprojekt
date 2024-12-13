@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="Style.css">
-    <link rel="stylesheet" href="Header.css">
+    <link rel="stylesheet" href="CSS/Style.css">
+    <link rel="stylesheet" href="CSS/Header.css">
 </head>
 <body>
 <div class="header-wrapper">
@@ -126,7 +126,13 @@
                     <span th:if="${sort == 'pricePrMonth' and order == 'desc'}">▼</span>
                 </a>
             </th>
-            <th>Status</th>
+            <th>
+                <a th:href="'/dash?sort=status&order=' + (${sort == 'status' and order == 'asc'} ? 'desc' : 'asc')">
+                    Status
+                    <span th:if="${sort == 'status' and order == 'asc'}">▲</span>
+                    <span th:if="${sort == 'status' and order == 'desc'}">▼</span>
+                </a>
+            </th>
         </tr>
         <tr th:each="car: ${cars}">
             <td th:text="${car.id}"></td>
@@ -135,6 +141,7 @@
             <td th:text="${car.model}"></td>
             <td th:text="${car.fuelType}"></td>
             <td th:text="${car.pricePrMonth}"></td>
+            <td th:text="${car.status}"></td>
             <td>
                 <a th:href="@{'/details/' + ${car.id}}" class="button">Details</a>
             </td>

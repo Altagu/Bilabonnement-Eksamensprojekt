@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Details</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="CSS/Style.css">
 </head>
 <body>
 <h1>Car Details</h1>
@@ -23,6 +23,9 @@
   <br>
   <label for="pricePrMonth">Price per Month:</label>
   <input type="text" id="pricePrMonth" name="pricePrMonth" th:value="${car.pricePrMonth}">
+  <br>
+  <label for="status">Status:</label>
+  <input type="text" id="status" name="status" th:value="${car.status}">
   <br>
   <button type="submit">Update</button>
 </form>

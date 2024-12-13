@@ -1,5 +1,6 @@
 package com.example.bilabonnementeksamensprojekt.Controller;
 
+import com.example.bilabonnementeksamensprojekt.Model.Car;
 import com.example.bilabonnementeksamensprojekt.Model.Customer;
 import com.example.bilabonnementeksamensprojekt.Model.RentalContract;
 import com.example.bilabonnementeksamensprojekt.Repo.CarRepo;
@@ -66,6 +67,12 @@ public class RentalContractController {
             rentalContract.setCustomerID(customerID);
         } else {
             throw new IllegalArgumentException("Invalid customer selection");
+        }
+
+        // Handle car selection
+        Car selectedCar = carRepo.findCarByID(rentalContract.getCarID());
+        if (selectedCar == null) {
+            throw new IllegalArgumentException("Invalid car selection: car not found");
         }
 
         // Update car status to 'Udlejet'

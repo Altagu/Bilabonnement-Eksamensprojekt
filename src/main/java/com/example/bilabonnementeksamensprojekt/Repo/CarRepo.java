@@ -30,10 +30,14 @@ public class CarRepo {
     }
 
     // Find car by ID
-    public Car findCarByID(int id){
-        String sql = "SELECT CarID as id, VIN, Brand, Model, Fueltype, PricePrMonth FROM Cars WHERE CarID = ?";
+    public Car findCarByID(int id) {
+        String sql = "SELECT CarID as id, VIN, Brand, Model, Fueltype, PricePrMonth, Status FROM Cars WHERE CarID = ?";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
-        return template.queryForObject(sql, rowMapper, id);
+        try {
+            return template.queryForObject(sql, rowMapper, id);
+        } catch (Exception e) {
+            return null;  // Return null if no car is found
+        }
     }
 
     // Delete car by ID
