@@ -9,10 +9,7 @@ import com.example.bilabonnementeksamensprojekt.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,15 +33,47 @@ public class RentalContractController {
     @GetMapping("/createRentalContract")
     public String showCreateForm(Model model) {
         model.addAttribute("customers", customerRepo.findAll());
-        model.addAttribute("cars", carRepo.fetchAll());
+        model.addAttribute("cars", carRepo.findAvailableCars());
         model.addAttribute("rentalContract", new RentalContract());
         return "home/rental/createRentalContract";
     }
 
     @PostMapping("/submitRentalContract")
-    public String createRentalContract(@ModelAttribute RentalContract rentalContract) {
-        System.out.println("Rental Contract: " + rentalContract);  // Log the received object
+    public String createRentalContract(@ModelAttribute RentalContract rentalContract,
+                                       @RequestParam(name = "customerOption") String customerOption,
+                                       @RequestParam(name = "customerID", required = false) Integer customerID,
+                                       @RequestParam(name = "fname", required = false) String fname,
+                                       @RequestParam(name = "lname", required = false) String lname,
+                                       @RequestParam(name = "email", required = false) String email,
+                                       @RequestParam(name = "phone", required = false) String phone,
+                                       @RequestParam(name = "address", required = false) String address) {
+        if ("new".equals(customerOption)) {
+            // Create a new Customer
+            Customer customer = new Customer();
+            customer.setFname(fname);
+            customer.setLname(lname);
+            customer.setEmail(email);
+            customer.setPhone(phone);
+            customer.setAddress(address);
+
+            // Save the new Customer and get the generated ID
+            customer = customerRepo.save(customer);
+
+            // Assign the new customer's ID to the rental contract
+            rentalContract.setCustomerID(customer.getCustomerID());
+        } else if ("existing".equals(customerOption) && customerID != null) {
+            // Use an existing customer ID
+            rentalContract.setCustomerID(customerID);
+        } else {
+            throw new IllegalArgumentException("Invalid customer selection");
+        }
+
+        // Update car status to 'Udlejet'
+        carRepo.updateCarStatus(rentalContract.getCarID(), "Udlejet");
+
+        // Save the rental contract
         rentalContractRepo.save(rentalContract);
+
         return "redirect:/rentalContracts/listRentalContracts";
     }
 

@@ -47,4 +47,17 @@ public class CarRepo {
         String sql = "UPDATE Cars SET VIN = ?, Brand = ?, Model = ?, Fueltype = ?, PricePrMonth = ? WHERE CarID = ?";
         template.update(sql, c.getVin(), c.getBrand(), c.getModel(), c.getFuelType(), c.getPricePrMonth(), c.getId());
     }
+
+    public List<Car> findAvailableCars() {
+        String sql = "SELECT CarID as id, VIN, Brand, Model, Fueltype, PricePrMonth, Status " +
+                "FROM Cars WHERE Status = 'Klar til udlejning'";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return template.query(sql, rowMapper);
+    }
+
+    // Update car status by ID
+    public void updateCarStatus(int carID, String status) {
+        String sql = "UPDATE Cars SET Status = ? WHERE CarID = ?";
+        template.update(sql, status, carID);
+    }
 }
