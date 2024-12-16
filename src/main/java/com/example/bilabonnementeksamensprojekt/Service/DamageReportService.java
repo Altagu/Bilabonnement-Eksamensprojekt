@@ -26,4 +26,8 @@ public class DamageReportService {
         return damageReportRepo.getDamageReportWithDetails(reportID);
     }
 
+    public List<DamageReport> findDamageReportByCarID(int carID) {
+        return damageReportRepo.findDamageReportByCarID(carID);
+    }
+
 }

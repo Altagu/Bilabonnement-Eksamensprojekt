@@ -77,4 +77,16 @@ public class DamageReportRepo {
         return report;
     }
 
+    public List<DamageReport> findDamageReportByCarID(int carID) {
+        String sql = "SELECT * FROM DamageReports WHERE CarID = ?";
+        return template.query(sql, new Object[]{carID}, (rs, rowNum) -> {
+            DamageReport report = new DamageReport();
+            report.setDamageReportID(rs.getInt("DamageReportID"));
+            report.setCarID(rs.getInt("CarID"));
+            report.setReportDate(rs.getDate("ReportDate"));
+            report.setTotalCost(rs.getDouble("TotalCost"));
+            return report;
+        });
+    }
+
 }

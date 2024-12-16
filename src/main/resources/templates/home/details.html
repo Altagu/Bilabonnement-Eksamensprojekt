@@ -29,5 +29,24 @@
   <br>
   <button type="submit">Update</button>
 </form>
+
+<h2>Damage Reports</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Report ID</th>
+    <th>Date</th>
+    <th>Total Cost</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="report : ${damageReports}">
+    <td th:text="${report.damageReportID}"></td>
+    <td th:text="${report.reportDate}"></td>
+    <td th:text="${report.totalCost}"></td>
+  </tr>
+  </tbody>
+</table>
+
 </body>
 </html>

@@ -53,7 +53,7 @@ public class CarRepo {
     }
 
     public List<Car> findAvailableCars() {
-        String sql = "SELECT CarID as id, VIN, Brand, Model, Fueltype, PricePrMonth, Status " +
+        String sql = "SELECT CarID as id, VIN, Brand, Model, Fueltype, PricePrMonth, Status, ImagePath " +
                 "FROM Cars WHERE Status = 'Klar til udlejning'";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return template.query(sql, rowMapper);

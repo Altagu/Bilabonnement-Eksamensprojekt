@@ -13,6 +13,7 @@ public class Car {
     private String fuelType;  // Changed to camelCase
     private double pricePrMonth;  // Changed to camelCase
     private String status;
+    private String imagePath;
 
     public Car() {
     }
@@ -53,6 +54,13 @@ public class Car {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public void setId(int carID) {

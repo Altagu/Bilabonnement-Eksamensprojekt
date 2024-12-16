@@ -48,10 +48,10 @@ public class UserController {
 
             if (user.getRole().equals("ADMIN")) {
                 session.setAttribute("user", user);
-                return "redirect:/";
+                return "redirect:/dash";
             } else if (user.getRole().equals("EMPLOYEE")) {
                 session.setAttribute("user", user);
-                return "redirect:/";
+                return "redirect:/dash";
             } else if (user.getRole().equals("USER")) {
                 session.setAttribute("user", user);
                 return "redirect:/";

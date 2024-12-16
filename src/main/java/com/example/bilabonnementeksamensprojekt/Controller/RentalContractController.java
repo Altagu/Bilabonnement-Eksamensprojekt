@@ -32,10 +32,17 @@ public class RentalContractController {
     }
 
     @GetMapping("/createRentalContract")
-    public String showCreateForm(Model model) {
+    public String showCreateForm(@RequestParam(name = "carID", required = false) Integer carID, Model model) {
         model.addAttribute("customers", customerRepo.findAll());
         model.addAttribute("cars", carRepo.findAvailableCars());
         model.addAttribute("rentalContract", new RentalContract());
+
+        if (carID != null) {
+            model.addAttribute("selectedCarID", carID);
+        } else {
+            model.addAttribute("selectedCarID", null);
+        }
+
         return "home/rental/createRentalContract";
     }
 

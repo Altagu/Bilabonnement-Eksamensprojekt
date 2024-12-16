@@ -57,10 +57,12 @@
         <div class="mb-6">
             <label for="carID" class="block text-lg font-medium text-gray-700">Select Car:</label>
             <select id="carID" name="carID" required class="w-full p-2 border border-gray-300 rounded-md">
-                <option value="" disabled selected>Select a Car</option>
+                <option value="" disabled>Select a Car</option>
                 <th:block th:each="car : ${cars}">
                     <option th:value="${car.id}" th:data-price="${car.pricePrMonth}"
-                            th:text="${car.id} + ': ' + ${car.brand} + ' ' + ${car.model}"></option>
+                            th:text="${car.id} + ': ' + ${car.brand} + ' ' + ${car.model}"
+                            th:selected="${car.id == selectedCarID}">
+                    </option>
                 </th:block>
             </select>
         </div>

@@ -58,51 +58,15 @@
 <p>Herunder ser du en oversigt over vores tilgængelige biler:</p>
 <div class="content">
     <div class="card-container">
-        <a class="card">
+        <a th:each="car : ${cars}" th:href="@{/rentalContracts/createRentalContract(carID=${car.id})}" class="card">
             <div class="card-image">
-                <img src="images/Fiat_500_Cult_268.png" alt="Fiat 500" class="button-icon">
+                <img th:src="${car.imagePath}" th:alt="${car.brand + ' ' + car.model}" class="button-icon">
             </div>
             <div class="card-content">
-                <h3>Fiat 500 Cabriolet Dolcevita</h3>
-                <p>Abonnement fra 3000 kr./md</p>
+                <h3 th:text="${car.brand} + ' ' + ${car.model}"></h3>
+                <p th:text="'Abonnement fra ' + ${car.pricePrMonth} + ' kr./md'"></p>
                 <p>Ink. forsikring, grøn ejerafgift, service</p>
-                <p>Samlet betaling over 12 mdr: 36.000 kr.</p>
-            </div>
-        </a>
-
-        <a class="card">
-            <div class="card-image">
-                <img src="images/Jeep_Avenger_Summit_BLACK.png" alt="Jeep Avenger" class="button-icon">
-            </div>
-            <div class="card-content">
-                <h3>Jeep Avenger Summit</h3>
-                <p>Abonnement fra 4000 kr./md</p>
-                <p>Ink. forsikring, grøn ejerafgift, service</p>
-                <p>Samlet betaling over 12 mdr: 48.000 kr.</p>
-            </div>
-        </a>
-
-        <a class="card">
-            <div class="card-image">
-                <img src="images/Peugeot_E-3008_GT_0MM00N9V.png" alt="Peugeot e3008" class="button-icon">
-            </div>
-            <div class="card-content">
-                <h3>Peugeot E-3008 GT</h3>
-                <p>Abonnement fra 4000 kr./md</p>
-                <p>Ink. forsikring, grøn ejerafgift, service</p>
-                <p>Samlet betaling over 12 mdr: 48.000 kr.</p>
-            </div>
-        </a>
-
-        <a class="card">
-            <div class="card-image">
-                <img src="images/Cocaine.jpg" alt="Cocaine" class="button-icon">
-            </div>
-            <div class="card-content">
-                <h3>Coke abonnement</h3>
-                <p>Abonnement fra 800 kr./md</p>
-                <p>Ink. dårlig lever, gode aftener, narkodiller</p>
-                <p>Samlet betaling over 12 mdr: 9600 kr.</p>
+                <p th:text="'Status: ' + ${car.status}"></p>
             </div>
         </a>
     </div>

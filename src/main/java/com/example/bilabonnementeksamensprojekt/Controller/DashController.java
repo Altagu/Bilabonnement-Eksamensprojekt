@@ -1,7 +1,9 @@
 package com.example.bilabonnementeksamensprojekt.Controller;
 
 import com.example.bilabonnementeksamensprojekt.Model.Car;
+import com.example.bilabonnementeksamensprojekt.Model.DamageReport;
 import com.example.bilabonnementeksamensprojekt.Service.CarService;
+import com.example.bilabonnementeksamensprojekt.Service.DamageReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ public class DashController {
 
     @Autowired
     private CarService carService;
+    @Autowired
+    private DamageReportService damageReportService;
 
     @GetMapping("/dash")
     public String dash(@RequestParam(value = "query", required = false) String query,
@@ -70,6 +74,10 @@ public class DashController {
     public String details(@PathVariable int id, Model model) {
         Car car = carService.findCarByID(id);
         model.addAttribute("car", car);
+
+        List<DamageReport> damageReports = damageReportService.findDamageReportByCarID(id);
+        model.addAttribute("damageReports", damageReports);
+
         return "home/details";
     }
 

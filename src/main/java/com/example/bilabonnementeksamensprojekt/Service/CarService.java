@@ -60,4 +60,8 @@ public class CarService {
     public List<Car> searchCars(String query) {
         return carRepo.searchCars(query);
     }
+
+    public List<Car> findAvailableCars() {
+        return carRepo.findAvailableCars();
+    }
 }
