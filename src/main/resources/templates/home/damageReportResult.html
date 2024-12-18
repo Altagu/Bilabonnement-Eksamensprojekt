@@ -29,7 +29,10 @@
   <h3>Total Price:</h3>
   <p><span th:text="${totalPrice}">Total Price</span> kr</p>
 
-  <button onclick="window.history.back()">Back to Form</button>
+  <a href="/dash" class="back-button-link">
+    <button type="button" class="back-button">Gå tilbage</button>
+  </a>
+
 </div>
 </body>
 </html>

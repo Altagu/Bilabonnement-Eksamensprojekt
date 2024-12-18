@@ -1,52 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Details</title>
-    <link rel="stylesheet" href="CSS/Style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Details</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1>Car Details</h1>
-<form action="/updateCar" method="post">
-  <input type="hidden" name="id" th:value="${car.id}">
-  <label for="vin">Stelnummer(VIN):</label>
-  <input type="text" id="vin" name="vin" th:value="${car.vin}">
-  <br>
-  <label for="brand">Brand:</label>
-  <input type="text" id="brand" name="brand" th:value="${car.brand}">
-  <br>
-  <label for="model">Model:</label>
-  <input type="text" id="model" name="model" th:value="${car.model}">
-  <br>
-  <label for="fuelType">Fuel Type:</label>
-  <input type="text" id="fuelType" name="fuelType" th:value="${car.fuelType}">
-  <br>
-  <label for="pricePrMonth">Price per Month:</label>
-  <input type="text" id="pricePrMonth" name="pricePrMonth" th:value="${car.pricePrMonth}">
-  <br>
-  <label for="status">Status:</label>
-  <input type="text" id="status" name="status" th:value="${car.status}">
-  <br>
-  <button type="submit">Update</button>
-</form>
+<body class="bg-gray-100 font-sans">
 
-<h2>Damage Reports</h2>
-<table>
-  <thead>
-  <tr>
-    <th>Report ID</th>
-    <th>Date</th>
-    <th>Total Cost</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="report : ${damageReports}">
-    <td th:text="${report.damageReportID}"></td>
-    <td th:text="${report.reportDate}"></td>
-    <td th:text="${report.totalCost}"></td>
-  </tr>
-  </tbody>
-</table>
+<h1 class="text-3xl font-semibold text-gray-800 text-center my-6">Car Details</h1>
+
+<div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+  <form action="/updateCar" method="POST">
+
+    <!-- VIN Field -->
+    <div class="mb-6">
+      <label for="vin" class="text-lg font-medium text-gray-700">Stelnummer (VIN):</label>
+      <input type="text" id="vin" name="vin" th:value="${car.vin}"
+             class="w-full p-2 border border-gray-300 rounded-md">
+    </div>
+
+    <!-- Brand Field -->
+    <div class="mb-6">
+      <label for="brand" class="text-lg font-medium text-gray-700">Brand:</label>
+      <input type="text" id="brand" name="brand" th:value="${car.brand}"
+             class="w-full p-2 border border-gray-300 rounded-md">
+    </div>
+
+    <!-- Model Field -->
+    <div class="mb-6">
+      <label for="model" class="text-lg font-medium text-gray-700">Model:</label>
+      <input type="text" id="model" name="model" th:value="${car.model}"
+             class="w-full p-2 border border-gray-300 rounded-md">
+    </div>
+
+    <!-- Fuel Type Field -->
+    <div class="mb-6">
+      <label for="fuelType" class="text-lg font-medium text-gray-700">Fuel Type:</label>
+      <input type="text" id="fuelType" name="fuelType" th:value="${car.fuelType}"
+             class="w-full p-2 border border-gray-300 rounded-md">
+    </div>
+
+    <!-- Price per Month Field -->
+    <div class="mb-6">
+      <label for="pricePrMonth" class="text-lg font-medium text-gray-700">Price per Month:</label>
+      <input type="text" id="pricePrMonth" name="pricePrMonth" th:value="${car.pricePrMonth}"
+             class="w-full p-2 border border-gray-300 rounded-md">
+    </div>
+
+    <!-- Status Dropdown -->
+    <div class="mb-6">
+      <label for="status" class="text-lg font-medium text-gray-700">Status:</label>
+      <select id="status" name="status" class="w-full p-2 border border-gray-300 rounded-md">
+        <option value="Udlejet" th:selected="${car.status == 'Udlejet'}">Udlejet</option>
+        <option value="Tilbageleveret" th:selected="${car.status == 'Tilbageleveret'}">Tilbageleveret</option>
+        <option value="Klar til udlejning" th:selected="${car.status == 'Klar til udlejning'}">Klar til udlejning</option>
+        <option value="Skadet" th:selected="${car.status == 'Skadet'}">Skadet</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="mb-6 text-center">
+      <button type="submit"
+              class="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none">
+        Update Car Details
+      </button>
+    </div>
+  </form>
+
+  <!-- Damage Reports Table -->
+  <h2 class="text-2xl font-semibold text-gray-800 my-6">Damage Reports</h2>
+  <table class="w-full bg-white border-collapse shadow-lg">
+    <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Report ID</th>
+      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Date</th>
+      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Total Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="report : ${damageReports}">
+      <td th:text="${report.damageReportID}" class="px-4 py-2 text-gray-700"></td>
+      <td th:text="${report.reportDate}" class="px-4 py-2 text-gray-700"></td>
+      <td th:text="${report.totalCost}" class="px-4 py-2 text-gray-700"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Back Button -->
+  <div class="mt-6 text-center">
+    <a href="/dash"
+       class="w-full py-3 px-4 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-700 focus:outline-none">
+      Back to Dashboard
+    </a>
+  </div>
+</div>
 
 </body>
 </html>

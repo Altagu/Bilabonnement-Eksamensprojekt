@@ -128,52 +128,49 @@ body {
     cursor: pointer;
 }
 
-/* Herunder findes test af card */
+/* Herunder findes styling af card */
 
-.card-container{
+.card-container {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: 100%;
     max-width: 1000px;
     justify-content: center;
-
 }
 
-
-.card{
+.card {
     display: block;
     width: 300px;
     height: 400px;
-    background-color: whitesmoke;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px darkslategray;
+    background-color: #f9fafb; /* Light gray background */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer, subtle shadow */
     overflow: hidden;
-    border: 1px solid black;
+    border: 1px solid #e1e1e1; /* Soft border */
     text-decoration: none;
     color: inherit;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card:hover{
+.card:hover {
     transform: translateY(-5px);
-    color: #a5b1ba;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger hover shadow */
     cursor: pointer;
-    /*text-decoration: underline;*/
 }
 
-.card-header{
+.card-header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background: whitesmoke;
-    font-size: 12px;
+    background-color: #f1f5f9; /* Lighter background for header */
+    font-size: 14px;
     font-weight: bold;
     color: #333;
 }
 
 .card-content {
-    padding: 15px
+    padding: 15px;
 }
 
 .card-content h3 {
@@ -188,13 +185,13 @@ body {
     color: #666;
 }
 
-.card-image{
-    background: whitesmoke;
+.card-image {
+    background-color: #f9fafb;
     text-align: center;
     padding: 20px;
 }
 
-.card-image img{
+.card-image img {
     width: 100%;
     max-width: 260px;
     height: 160px;

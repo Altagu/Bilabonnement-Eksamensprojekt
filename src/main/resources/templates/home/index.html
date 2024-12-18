@@ -3,54 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Landing</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="CSS/Style.css">
-    <link rel="stylesheet" href="CSS/Header.css">
 </head>
 <body>
-<div class="header-wrapper">
-    <div class="header">
-        <div class="homebutton">
-            <a href="/">
-                <img src="images/BILABONNEMENT_rgb_m2nbaw.svg" alt="Logo" class="logo" style="border: 2px solid #5c6e56;">
+<header class="bg-gray-900 text-white p-4">
+    <div class="container mx-auto flex items-center justify-between">
+        <!-- Logo as a button -->
+        <div>
+            <a href="/" class="text-4xl font-semibold hover:text-gray-400 focus:outline-none">
+                Bilabonnement
             </a>
         </div>
-        <div class="dropdowntest">
-            <div class="dropdown">
-                <button class="dropbtn">Menu</button>
-                <div class="dropdown-content">
-                    <a href="/skade">Skade</a>
-                    <a href="/dash">Dashboard</a>
-                    <a href="/organisation">Organisation</a>
-                    <a href="/virksomhed">Virksomhed</a>
-                    <a href="rentalContracts/createRentalContract">Lejeaftale</a>
 
-                    <!-- Show Admin Dashboard link only for admins -->
-                    <div th:if="${user != null and user.role == 'ADMIN'}">
-                        <a href="home/adminDashboard">Admin Dashboard</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <form class="search-form" action="/searchErrorPage" method="GET">
-            <input type="text" name="query" placeholder="Søg..." class="search-input">
-            <button type="submit" class="search-button">🔍</button>
-        </form>
-
-        <div class="login">
-            <!-- Show login link if the user is not logged in -->
-            <div th:if="${user == null}">
-                <a href="/login">Log ind</a>
-            </div>
-
-            <!-- Show logged-in user's name and logout option if the user is logged in -->
-            <div th:if="${user != null}">
-                <p>Welcome, <span th:text="${user.username}"></span>!</p>
-                <p th:text="'User role: ' + ${user.role}"></p> <!-- Display User Role -->
-                <a href="/logout">Log ud</a>
-            </div>
-        </div>
+        <!-- Navigation links -->
+        <nav class="hidden md:flex space-x-6">
+            <a href="/login">Log ind</a>
+        </nav>
     </div>
-</div>
+</header>
+
 <div class="banner">
     <img src="images/modeloversigt_banner.png" alt="Banner image">
 </div>

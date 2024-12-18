@@ -4,34 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental Contracts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1>Rental Contracts</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Contract ID</th>
-        <th>Customer ID</th>
-        <th>Car ID</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Price</th>
-        <th>Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <th:block th:each="rentalContract : ${rentalContracts}">
+<body class="bg-gray-100 font-sans">
+
+<h1 class="text-3xl font-semibold text-gray-800 text-center my-6">Rental Contracts</h1>
+
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <table class="w-full bg-white border-collapse shadow-lg">
+        <thead class="bg-gray-100">
         <tr>
-            <td th:text="${rentalContract.contractID}"></td>
-            <td th:text="${rentalContract.customerID}"></td>
-            <td th:text="${rentalContract.carID}"></td>
-            <td th:text="${rentalContract.startDate}"></td>
-            <td th:text="${rentalContract.endDate}"></td>
-            <td th:text="${rentalContract.rentalFee}"></td>
-            <td th:text="${rentalContract.status}"></td>
+            <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Contract ID</th>
+            <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Customer ID</th>
+            <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Car ID</th>
+            <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Start Date</th>
+            <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">End Date</th>
+            <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Price</th>
+            <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Status</th>
         </tr>
-    </th:block>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <th:block th:each="rentalContract : ${rentalContracts}">
+            <tr class="border-b hover:bg-gray-50">
+                <td th:text="${rentalContract.contractID}" class="px-4 py-2 text-gray-700"></td>
+                <td th:text="${rentalContract.customerID}" class="px-4 py-2 text-gray-700"></td>
+                <td th:text="${rentalContract.carID}" class="px-4 py-2 text-gray-700"></td>
+                <td th:text="${rentalContract.startDate}" class="px-4 py-2 text-gray-700"></td>
+                <td th:text="${rentalContract.endDate}" class="px-4 py-2 text-gray-700"></td>
+                <td th:text="${rentalContract.rentalFee}" class="px-4 py-2 text-gray-700"></td>
+                <td th:text="${rentalContract.status}" class="px-4 py-2 text-gray-700"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <!-- Back Button -->
+    <div class="mt-6 text-center">
+        <a href="/dash" class="w-full py-3 px-4 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-700 focus:outline-none">
+            Tilbage til Dashboard
+        </a>
+    </div>
+</div>
+
 </body>
 </html>
