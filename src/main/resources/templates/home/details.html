@@ -23,7 +23,7 @@
 
     <!-- Brand Field -->
     <div class="mb-6">
-      <label for="brand" class="text-lg font-medium text-gray-700">Brand:</label>
+      <label for="brand" class="text-lg font-medium text-gray-700">Mærke:</label>
       <input type="text" id="brand" name="brand" th:value="${car.brand}"
              class="w-full p-2 border border-gray-300 rounded-md">
     </div>
@@ -37,14 +37,14 @@
 
     <!-- Fuel Type Field -->
     <div class="mb-6">
-      <label for="fuelType" class="text-lg font-medium text-gray-700">Fuel Type:</label>
+      <label for="fuelType" class="text-lg font-medium text-gray-700">Brændstof:</label>
       <input type="text" id="fuelType" name="fuelType" th:value="${car.fuelType}"
              class="w-full p-2 border border-gray-300 rounded-md">
     </div>
 
     <!-- Price per Month Field -->
     <div class="mb-6">
-      <label for="pricePrMonth" class="text-lg font-medium text-gray-700">Price per Month:</label>
+      <label for="pricePrMonth" class="text-lg font-medium text-gray-700">Pris/Måned:</label>
       <input type="text" id="pricePrMonth" name="pricePrMonth" th:value="${car.pricePrMonth}"
              class="w-full p-2 border border-gray-300 rounded-md">
     </div>
@@ -62,21 +62,22 @@
 
     <!-- Submit Button -->
     <div class="mb-6 text-center">
-      <button type="submit"
+      <button type="button"
+              onclick="confirmChanges()"
               class="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none">
-        Update Car Details
+        Godkend ændringer
       </button>
     </div>
   </form>
 
   <!-- Damage Reports Table -->
-  <h2 class="text-2xl font-semibold text-gray-800 my-6">Damage Reports</h2>
+  <h2 class="text-2xl font-semibold text-gray-800 my-6">Skade rapporter</h2>
   <table class="w-full bg-white border-collapse shadow-lg">
     <thead class="bg-gray-100">
     <tr>
-      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Report ID</th>
-      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Date</th>
-      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Total Cost</th>
+      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Rapport ID</th>
+      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Dato</th>
+      <th class="px-4 py-2 text-left text-lg font-medium text-gray-700">Total</th>
     </tr>
     </thead>
     <tbody>
@@ -92,10 +93,21 @@
   <div class="mt-6 text-center">
     <a href="/dash"
        class="w-full py-3 px-4 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-700 focus:outline-none">
-      Back to Dashboard
+      Tilbage til Dashboard
     </a>
   </div>
 </div>
+
+<script>
+  function confirmChanges() {
+    const confirmation = confirm("Er du sikker på, at du vil beholde ændringerne?");
+    if (confirmation) {
+      // Hvis brugeren bekræfter, indsendes formularen
+      document.querySelector("form").submit();
+    }
+    // Hvis brugeren ikke bekræfter, sker der ikke noget
+  }
+</script>
 
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skadesrapportering</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="CSS/Skade.css">
 </head>
 
@@ -50,8 +51,13 @@
             <!-- Submit button -->
             <button type="submit" class="submit-button">Send rapport</button>
         </form>
-        <br>
-        <button type="button" class="back-button" onclick="history.back()">Gå tilbage</button>
+        <!-- Back Button -->
+        <div class="mt-6 text-center">
+            <a href="/dash"
+               class="w-full py-3 px-4 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-700 focus:outline-none">
+                Tilbage til Dashboard
+            </a>
+        </div>
     </div>
 </div>
 

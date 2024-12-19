@@ -53,7 +53,7 @@
     <h2>Lageroversigt</h2>
     <form class="search-form" action="/dash" method="GET">
         <input type="text" name="query" placeholder="Søg efter biler..." class="search-input" th:value="${query}">
-        <button type="submit" class="search-button">Search</button>
+        <button type="submit" class="search-button">Søg</button>
     </form>
     <table>
         <tr>
@@ -116,7 +116,7 @@
             <td th:text="${car.pricePrMonth}"></td>
             <td th:text="${car.status}"></td>
             <td>
-                <a th:href="@{'/details/' + ${car.id}}" class="button">Details</a>
+                <a th:href="@{'/details/' + ${car.id}}" class="button">Lav ændring</a>
             </td>
         </tr>
     </table>

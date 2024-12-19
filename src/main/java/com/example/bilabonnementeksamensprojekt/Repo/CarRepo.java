@@ -48,8 +48,8 @@ public class CarRepo {
 
     // Update car details
     public void updateCar(Car c){
-        String sql = "UPDATE Cars SET VIN = ?, Brand = ?, Model = ?, Fueltype = ?, PricePrMonth = ? WHERE CarID = ?";
-        template.update(sql, c.getVin(), c.getBrand(), c.getModel(), c.getFuelType(), c.getPricePrMonth(), c.getId());
+        String sql = "UPDATE Cars SET VIN = ?, Brand = ?, Model = ?, Fueltype = ?, PricePrMonth = ?, Status = ? WHERE CarID = ?";
+        template.update(sql, c.getVin(), c.getBrand(), c.getModel(), c.getFuelType(), c.getPricePrMonth(), c.getStatus(), c.getId());
     }
 
     public List<Car> findAvailableCars() {
